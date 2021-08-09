@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang='zh'>
+	<meta charset='utf-8'>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="renderer" content="webkit" />
+	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0" />
+	<title>Luckysheet</title>
+
+	<script src="./plugins/js/plugin.js"></script>
+	<link rel='stylesheet' href='./css/luckysheet.css' />
+
+	<!-- rollup luckysheet.js -->
+	<script src="./luckysheet.umd.js"></script>
+</head>
+
+<body>
+	<div id="luckysheet" style="margin:0px;padding:0px;position:absolute;width:100%;height:100%;left: 0px;top: 0px;"></div>
+	<script type="module">
+		$(function () {
+			luckysheet.create({
+				container: 'luckysheet',
+				// title: 'Luckysheet Demo',
+				// lang: 'zh',
+				data: [ {  // First priority
+				"index": 0, // shell's index
+				"status": 1, // this is activity shell
+				// 多少行
+				"row": 21, // how many cells in each row
+				"column": 20, // how many cells in each column
+				"defaultRowHeight": 16, // each cell's height
+				"defaultColWidth": 66, // each cell's width
+				"scrollLeft": 0, // init position of scrollX
+				"scrollTop": 0, // init position of scrollY
+				"zoomRatio":2, // 缩放比例
+				"celldata": [
+				{
+					"r": 0,
+					"c": 0,
+					"v": {
+						"m": "abcdefghijk",
+						"v": "abcdefghijk",
+						"bg": "rgba(255,255,0)",
+						"it": 0,
+						"fs": 11,
+						"fc": "rgb(51, 51, 51)"
+					}
+				},
+				{
+					"r": 1,
+					"c": 1,
+					"v": {
+						"bg": "rgba(0,255,255)",
+						"it": 0,
+						"ff": 0,
+						"fs": 11,
+						"fc": "rgb(51, 51, 51)"
+					}
+				},
+				{
+					"r": 12,
+					"c": 12,
+					"v": {
+						"m": "36*18",
+						"v": "36*18",
+						"bg": "rgba(255,255,0)",
+						"it": 0,
+						"ff": 0,
+						"fs": 11,
+						"fc": "rgb(51, 51, 51)"
+					}
+				},
+				{
+					"r": 16,
+					"c": 16,
+					"v": {
+						"m": "lmnopqrst",
+						"v": "lmnopqrst",
+						"bg": "rgba(255,255,0)",
+						"it": 0,
+						"ff": 0,
+						"fs": 11,
+						"fc": "rgb(51, 51, 51)"
+					}
+				}
+				],
+				}]
+			})
+
+		})
+	</script>
+</body>
+
+</html>
