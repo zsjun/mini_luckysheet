@@ -12,15 +12,16 @@ const sheetmanage = {
   initialjfFile: function(menu, title) {
     let _this = this;
     let file = Store.luckysheetfile[0]; // Get Store's cell data
+    // 转成二维数组
     let data = _this.buildGridData(file);
 
     this.sheetParamRestore(file, data); //File to Store: config ...
 
     file.data = data;
 
-    let rowheight = data.length;
-    let colwidth = data[0].length;
-    luckysheetcreatedom(colwidth, rowheight, data, menu, title); // Create HTML5 elements
+    let rowNum = data.length;
+    let colNum = data[0].length;
+    luckysheetcreatedom(rowNum, colNum, data, menu, title); // Create HTML5 elements
 
     setTimeout(function() {
       Store.luckysheetTableContentHW = [
@@ -31,21 +32,22 @@ const sheetmanage = {
           Store.columnHeaderHeight -
           Store.cellMainSrollBarSize,
       ];
-      $("#luckysheetTableContent")
-        .attr({
-          width: Math.ceil(Store.luckysheetTableContentHW[0]),
-          height: Math.ceil(Store.luckysheetTableContentHW[1]),
-        })
-        .css({
-          width: Store.luckysheetTableContentHW[0],
-          height: Store.luckysheetTableContentHW[1],
-        })
-        .get(0)
-        .getContext("2d");
+      //   $("#luckysheetTableContent")
+      //     .attr({
+      //       width: Math.ceil(Store.luckysheetTableContentHW[0]),
+      //       height: Math.ceil(Store.luckysheetTableContentHW[1]),
+      //     })
+      //     .css({
+      //       width: Store.luckysheetTableContentHW[0],
+      //       height: Store.luckysheetTableContentHW[1],
+      //     })
+      //     .get(0)
+      //     .getContext("2d");
 
       file["load"] = "1";
       _this.setSheetParam(false); // build temporary parameter for cell
       _this.storeSheetParam();
+      // 这里渲染canvas
       luckysheetsizeauto();
       //move scroll to the location in config setting
       if (file["scrollLeft"] != null && file["scrollLeft"] > 0) {
