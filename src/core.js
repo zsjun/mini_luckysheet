@@ -2,7 +2,7 @@ import defaultSetting from "./config.js";
 import Store from "./store";
 import sheetmanage from "./controllers/sheetmanage";
 import { common_extend } from "./utils/util";
-import { luckysheetloadingHTML } from "./controllers/constant";
+import { luckysheetloadingHTML } from "./constant/index";
 import { luckysheetHandler } from "./controllers/handler";
 
 let luckysheet = {};
@@ -25,6 +25,7 @@ luckysheet.create = function(setting) {
   // //loading
   $("#" + container).append(luckysheetloadingHTML());
   sheetmanage.initialjfFile(menu, title);
+  console.log(1123);
   luckysheetHandler();
 };
 
