@@ -4,63 +4,89 @@ import Store from "../store";
 import { luckysheetsizeauto } from "./resize";
 import { debounce } from "lodash";
 import { selectHightlightShow } from "./select";
+import { luckysheetupdateCell } from "./updateCell";
 import { rowLocation, colLocation, mouseposition } from "../global/location";
+const getRowAndColIndex = (pageX, pageY) => {
+  let mouse = mouseposition(event.pageX, event.pageY);
+  if (
+    mouse[0] >= Store.cellmainWidth - Store.cellMainSrollBarSize ||
+    mouse[1] >= Store.cellmainHeight - Store.cellMainSrollBarSize
+  ) {
+    return;
+  }
 
+  let scrollLeft = $("#luckysheet-cell-main").scrollLeft(),
+    scrollTop = $("#luckysheet-cell-main").scrollTop();
+  let x = mouse[0] + scrollLeft;
+  let y = mouse[1] + scrollTop;
+
+  let row_location = rowLocation(y),
+    row_index = row_location[2];
+  let col_location = colLocation(x),
+    col_index = col_location[2];
+  return [row_index, col_index];
+};
 function luckysheetHandler() {
   // let mousewheelArrayUniqueTimeout;
   // luckysheet-cell-main 是覆盖整个canvas的div
   // luckysheetTableContent是canvas
   // console.log(111, $("#luckysheet-cell-main"));
   // $("#luckysheet-cell-main, #luckysheetTableContent")
-  $("#luckysheet-cell-main").mousedown(function(event) {
-    // Get mouse's position from location.js
-    // console.log(112);
-    let mouse = mouseposition(event.pageX, event.pageY);
-    if (
-      mouse[0] >= Store.cellmainWidth - Store.cellMainSrollBarSize ||
-      mouse[1] >= Store.cellmainHeight - Store.cellMainSrollBarSize
-    ) {
-      return;
-    }
+  $("#luckysheet-cell-main")
+    .mousedown(function(event) {
+      // Get mouse's position from location.js
+      // console.log(112);
+      let mouse = mouseposition(event.pageX, event.pageY);
+      if (
+        mouse[0] >= Store.cellmainWidth - Store.cellMainSrollBarSize ||
+        mouse[1] >= Store.cellmainHeight - Store.cellMainSrollBarSize
+      ) {
+        return;
+      }
 
-    let x = mouse[0] + $("#luckysheet-cell-main").scrollLeft();
-    let y = mouse[1] + $("#luckysheet-cell-main").scrollTop();
+      let x = mouse[0] + $("#luckysheet-cell-main").scrollLeft();
+      let y = mouse[1] + $("#luckysheet-cell-main").scrollTop();
 
-    // let luckysheetTableContent = $("#luckysheetTableContent").get(0).getContext("2d");
+      // let luckysheetTableContent = $("#luckysheetTableContent").get(0).getContext("2d");
 
-    let row_location = rowLocation(y),
-      row = row_location[1],
-      row_pre = row_location[0],
-      row_index = row_location[2];
+      let row_location = rowLocation(y),
+        row = row_location[1],
+        row_pre = row_location[0],
+        row_index = row_location[2];
 
-    let col_location = colLocation(x),
-      col = col_location[1],
-      col_pre = col_location[0],
-      col_index = col_location[2];
+      let col_location = colLocation(x),
+        col = col_location[1],
+        col_pre = col_location[0],
+        col_index = col_location[2];
 
-    let row_index_ed = row_index,
-      col_index_ed = col_index;
+      let row_index_ed = row_index,
+        col_index_ed = col_index;
 
-    Store.luckysheet_select_status = true;
+      Store.luckysheet_select_status = true;
 
-    Store.luckysheet_select_save.length = 0;
-    Store.luckysheet_select_save.push({
-      left: col_pre,
-      width: col - col_pre - 1,
-      top: row_pre,
-      height: row - row_pre - 1,
-      left_move: col_pre,
-      width_move: col - col_pre - 1,
-      top_move: row_pre,
-      height_move: row - row_pre - 1,
-      row: [row_index, row_index_ed],
-      column: [col_index, col_index_ed],
-      row_focus: row_index,
-      column_focus: col_index,
+      Store.luckysheet_select_save.length = 0;
+      Store.luckysheet_select_save.push({
+        left: col_pre,
+        width: col - col_pre - 1,
+        top: row_pre,
+        height: row - row_pre - 1,
+        left_move: col_pre,
+        width_move: col - col_pre - 1,
+        top_move: row_pre,
+        height_move: row - row_pre - 1,
+        row: [row_index, row_index_ed],
+        column: [col_index, col_index_ed],
+        row_focus: row_index,
+        column_focus: col_index,
+      });
+
+      selectHightlightShow();
+    })
+    .dblclick(function(event) {
+      const res = getRowAndColIndex(event.pageX, event.pageY);
+      //TODO: find index of row&column can be merged into click()
+      luckysheetupdateCell(res[0], res[1], Store.flowdata);
     });
-
-    selectHightlightShow();
-  });
 
   $("#luckysheet-grid-window-1").mousewheel(function(event, delta) {
     let scrollLeft = $("#luckysheet-scrollbar-x").scrollLeft(),

@@ -1,4 +1,4 @@
-import { gridHTML } from "../constant/index";
+import { gridHTML, inputHTML } from "../constant/index";
 import { rhchInit } from "./rhchInit";
 import Store from "../store";
 
@@ -21,6 +21,7 @@ function luckysheetcreatedom(colNum, rowNum, data, menu, title) {
     width: Store.rowHeaderWidth - 1.5,
     height: Store.columnHeaderHeight - 1.5,
   });
+  $("body").append(inputHTML);
 }
 
 export { luckysheetcreatedom };
