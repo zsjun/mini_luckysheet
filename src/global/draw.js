@@ -3,7 +3,7 @@ import { getRealCellValue, checkstatusByCell } from "./getdata";
 import { isRealNull } from "./validate";
 import { luckysheet_searcharray } from "../controllers/sheetSearch";
 import { chatatABC } from "../utils/util";
-import { luckysheetdefaultstyle } from "../controllers/constant";
+import { luckysheetdefaultstyle } from "../constant/index";
 
 // Draw Row's title with H5Canvas  123...
 function luckysheetDrawgridRowTitle(scrollHeight) {

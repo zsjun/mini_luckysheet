@@ -1,4 +1,4 @@
-import { gridHTML } from "../controllers/constant";
+import { gridHTML } from "../constant/index";
 import { rhchInit } from "./rhchInit";
 import Store from "../store";
 
