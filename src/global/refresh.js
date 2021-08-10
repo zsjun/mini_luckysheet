@@ -5,8 +5,6 @@ import {
 } from "./draw";
 import Store from "../store";
 
-export { luckysheetrefreshgrid };
-
 //Refresh the canvas display data according to scrollHeight and scrollWidth
 function luckysheetrefreshgrid(scrollWidth, scrollHeight) {
   let luckysheetTableContent = $("#luckysheetTableContent")
@@ -26,3 +24,4 @@ function luckysheetrefreshgrid(scrollWidth, scrollHeight) {
     Store.columnHeaderHeight - 1
   );
 }
+export { luckysheetrefreshgrid };

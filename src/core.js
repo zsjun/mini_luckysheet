@@ -3,6 +3,7 @@ import Store from "./store";
 import sheetmanage from "./controllers/sheetmanage";
 import { common_extend } from "./utils/util";
 import { luckysheetloadingHTML } from "./controllers/constant";
+import { luckysheetHandler } from "./controllers/handler";
 
 let luckysheet = {};
 
@@ -24,6 +25,7 @@ luckysheet.create = function(setting) {
   // //loading
   $("#" + container).append(luckysheetloadingHTML());
   sheetmanage.initialjfFile(menu, title);
+  luckysheetHandler();
 };
 
 export { luckysheet };
