@@ -25,7 +25,6 @@ luckysheet.create = function(setting) {
   // //loading
   $("#" + container).append(luckysheetloadingHTML());
   sheetmanage.initialjfFile(menu, title);
-  console.log(1123);
   luckysheetHandler();
 };
 

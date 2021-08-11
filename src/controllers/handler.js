@@ -81,7 +81,6 @@ function luckysheetHandler() {
       });
 
       selectHightlightShow();
-      console.log(11, Store.luckysheetCellUpdate);
       if (Store.luckysheetCellUpdate) {
         refreshCell(
           Store.luckysheetCellUpdate[0],

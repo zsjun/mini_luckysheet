@@ -57,7 +57,6 @@ function luckysheetupdateCell(row_index1, col_index1, d, cover, isnotfocus) {
       "box-sizing": "initial",
       display: "flex",
     });
-  console.log(top);
   $("#luckysheet-input-box-index")
     .html(chatatABC(col_index) + (row_index + 1))
     .css({
