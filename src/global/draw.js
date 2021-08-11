@@ -231,10 +231,10 @@ function luckysheetDrawMain(scrollWidth, scrollHeight) {
   // luckysheetTableContent.font = luckysheetdefaultFont();
   luckysheetTableContent.fillStyle = luckysheetdefaultstyle.fillStyle;
 
-  //表格渲染区域 非空单元格行列 起止坐标
+  // 表格渲染区域 非空单元格行列 起止坐标
   let cellupdate = [];
-
-  let bodrder05 = 0.5; //Default 0.5
+  // Default 0.5
+  let bodrder05 = 0.5;
 
   for (let r = dataset_row_st; r <= dataset_row_ed; r++) {
     let start_r;

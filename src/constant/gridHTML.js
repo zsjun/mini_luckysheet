@@ -26,6 +26,7 @@ const gridHTML = function() {
                                 <div id="luckysheet-cell-selected-boxs">
                                     <div id="luckysheet-cell-selected" class="luckysheet-cell-selected"></div>
                                 </div>
+                                \${flow}
                               </div>
                           </td>
                       </tr>

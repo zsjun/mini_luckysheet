@@ -4,7 +4,7 @@ import Store from "../store";
 import { luckysheetsizeauto } from "./resize";
 import { debounce } from "lodash";
 import { selectHightlightShow } from "./select";
-import { luckysheetupdateCell } from "./updateCell";
+import { luckysheetupdateCell, refreshCell } from "./updateCell";
 import { rowLocation, colLocation, mouseposition } from "../global/location";
 const getRowAndColIndex = (pageX, pageY) => {
   let mouse = mouseposition(event.pageX, event.pageY);
@@ -81,6 +81,13 @@ function luckysheetHandler() {
       });
 
       selectHightlightShow();
+      console.log(11, Store.luckysheetCellUpdate);
+      if (Store.luckysheetCellUpdate) {
+        refreshCell(
+          Store.luckysheetCellUpdate[0],
+          Store.luckysheetCellUpdate[1]
+        );
+      }
     })
     .dblclick(function(event) {
       const res = getRowAndColIndex(event.pageX, event.pageY);

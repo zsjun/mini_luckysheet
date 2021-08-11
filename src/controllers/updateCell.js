@@ -1,14 +1,11 @@
 import { chatatABC } from "../utils/util";
 import { getcellvalue } from "../global/getdata";
 import Store from "../store";
+import { luckysheetrefreshgrid } from "../global/refresh";
+import { setcellvalue } from "../global/setdata";
+import editor from "../global/editor";
 
-export function luckysheetupdateCell(
-  row_index1,
-  col_index1,
-  d,
-  cover,
-  isnotfocus
-) {
+function luckysheetupdateCell(row_index1, col_index1, d, cover, isnotfocus) {
   let size = getColumnAndRowSize(row_index1, col_index1, d);
   let row = size.row,
     row_pre = size.row_pre,
@@ -138,3 +135,18 @@ function valueShowEs(r, c, d) {
   }
   return value;
 }
+
+// From: formula.updatecell()
+// 单元格如果数据更新之后，当点击了别的单元格的时候，先刷新这里
+function refreshCell(r, c) {
+  if (!r && !c) return;
+  let $input = $("#luckysheet-rich-text-editor");
+  let value = value || $input.text();
+  let d = editor.deepCopyFlowData(Store.flowdata);
+  setcellvalue(r, c, d, value);
+  Store.flowdata = d;
+  luckysheetrefreshgrid();
+  Store.luckysheetCellUpdate = null;
+}
+
+export { refreshCell, luckysheetupdateCell };

@@ -7,6 +7,12 @@ import Store from "../store";
 
 //Refresh the canvas display data according to scrollHeight and scrollWidth
 function luckysheetrefreshgrid(scrollWidth, scrollHeight) {
+  if (scrollWidth == null) {
+    scrollWidth = $("#luckysheet-cell-main").scrollLeft();
+  }
+  if (scrollHeight == null) {
+    scrollHeight = $("#luckysheet-cell-main").scrollTop();
+  }
   let luckysheetTableContent = $("#luckysheetTableContent")
     .get(0)
     .getContext("2d");

@@ -20,6 +20,8 @@ const Store = {
   zoomRatio: 1,
   // 用来保存选择了的单元格
   luckysheet_select_save: [],
+  // 保存编辑过的单元格
+  luckysheetCellUpdate: null,
 };
 
 export default Store;
